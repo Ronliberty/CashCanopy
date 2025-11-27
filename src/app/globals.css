@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --gold: #D4AF37;
+  --amber: #FFBF00;
+  --light-amber: #FEF3CD;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #fef9e7 0%, #fef5e7 100%);
+}
+
+/* Custom utility classes */
+.bg-gold { background-color: var(--gold); }
+.text-gold { color: var(--gold); }
+.border-gold { border-color: var(--gold); }
+.bg-amber { background-color: var(--amber); }
+.text-amber { color: var(--amber); }
+.bg-light-amber { background-color: var(--light-amber); }
+
+/* Form styling */
+.form-input {
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+  border-color: var(--gold);
+}
+
+/* Button styling */
+.btn-primary {
+  background: linear-gradient(to right, var(--gold), var(--amber));
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Social icon styling */
+.social-icon {
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  color: var(--gold);
+  transform: translateY(-3px);
+}
+
+/* Feature icon styling */
+.feature-icon {
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+/* Card styling */
+.benefit-card {
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+  .progress-step:not(:last-child)::after {
+    width: 40px;
+  }
+  
+  .progress-step {
+    width: 26px;
+    height: 26px;
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-step:not(:last-child)::after {
+    width: 30px;
+  }
+  
+  .progress-step {
+    width: 22px;
+    height: 22px;
+    font-size: 0.75rem;
+  }
 }

@@ -88,7 +88,7 @@ export default function ThankYouSlide({ onNext }: SlideProps) {
         onClick={onNext}
         className="btn-primary text-white py-3 w-full rounded-lg font-medium text-sm md:text-base"
       >
-        Return to Homepage
+        Return to Homepage.
       </button>
     </div>
   )

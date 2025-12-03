@@ -7,7 +7,8 @@ import BenefitsSlide from './BenefitsSlide'
 import RequirementsSlide from './RequirementsSlide'
 import SignupSlide from './SignupSlide'
 import ThankYouSlide from './ThankYouSlide'
-import { SlideProps } from '@/types' 
+import { SlideProps, FormData } from '@/types'   // <-- important
+import { sendOnboardingForm } from '@/lib/api'   // <-- important
 import { Coins } from 'lucide-react'
 
 export default function OnboardingFlow() {
@@ -26,20 +27,31 @@ export default function OnboardingFlow() {
   
   const handleNext = (): void => {
     if (currentStep < slides.length - 1) {
-      setCurrentStep(currentStep + 1)
+      setCurrentStep(prev => prev + 1)
     }
   }
   
-  const handleSubmit = (e: React.FormEvent): void => {
-    e.preventDefault()
-    handleNext()
-  }
-  
+  const handleFormSubmit = async (formData: FormData) => {
+    try {
+      await sendOnboardingForm({
+        name: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        contact: formData.phone,
+        country: formData.country,
+        address: formData.address,
+      });
+
+      handleNext();
+    } catch (err) {
+      console.error("Form submission failed:", err);
+    }
+  };
+
   return (
     <div className="max-w-lg w-full mx-auto">
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden relative">
         
-        {/* Logo/Header */}
+        {/* Logo */}
         <div className="pt-6 md:pt-8 px-4 md:px-8 text-center">
           <div className="flex justify-center items-center mb-2">
             <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-amber flex items-center justify-center mr-3">
@@ -50,14 +62,14 @@ export default function OnboardingFlow() {
           <p className="text-gray-500 text-xs md:text-sm">Your Gateway to Passive Income</p>
         </div>
 
-        {/* Progress Bar */}
+        {/* Progress */}
         <ProgressBar currentStep={currentStep} totalSteps={slides.length} />
 
-        {/* Current Slide */}
+        {/* Slide */}
         <div className="px-4 md:px-8 pb-6 md:pb-8">
           <CurrentSlide 
             onNext={handleNext} 
-            onSubmit={handleSubmit}
+            onSubmit={handleFormSubmit}
             currentStep={currentStep}
           />
         </div>

@@ -23,14 +23,14 @@ export default function SignupSlide({ onSubmit }: SlideProps) {
     }))
   }
 
-  const handleSubmit = (e: FormEvent): void => {
-    e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData)
-    if (onSubmit) {
-      onSubmit(e)
-    }
+const handleSubmit = async (e: FormEvent): Promise<void> => {
+  e.preventDefault();
+
+  if (onSubmit) {
+    await onSubmit(formData);  // send data to parent
   }
+};
+
 
   return (
     <div>

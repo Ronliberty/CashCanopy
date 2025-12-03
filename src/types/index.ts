@@ -1,6 +1,6 @@
 export interface SlideProps {
   onNext: () => void;
-  onSubmit?: (e: React.FormEvent) => void;
+  onSubmit?: (data: FormData) => void;
   currentStep?: number;
 }
 

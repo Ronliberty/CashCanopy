@@ -17,7 +17,12 @@ export const sendOnboardingForm = async (data: {
   contact: string;
   country: string;
   address: string;
+  
 }) => {
+  const payload = {
+    ...data,
+    react_app: process.env.NEXT_PUBLIC_APP_UUID, // runtime value
+  };
   const res = await api.post("/api/portfolio/form/submit/", data);
   return res.data;
 };

@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CashCanopy - Your Path to Passive Income",
   description: "Your gateway to earning steady income through AI training and survey partnerships.",
+  icons: {
+    icon: "/nayo.ico",
+  },
 };
 
 export default function RootLayout({

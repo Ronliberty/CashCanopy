@@ -1,5 +1,6 @@
 import { Check, Mail, Phone, Zap, Facebook, Instagram, Twitter, Youtube, Twitch, Send } from 'lucide-react'
 import { SlideProps, SocialIcon, NextStep} from '@/types'
+import Link from "next/link";
 
 export default function ThankYouSlide({ onNext }: SlideProps) {
   const socialIcons: SocialIcon[] = [
@@ -83,13 +84,14 @@ export default function ThankYouSlide({ onNext }: SlideProps) {
           )
         })}
       </div>
-
+<Link href="/">
       <button 
-        onClick={onNext}
+       
         className="btn-primary text-white py-3 w-full rounded-lg font-medium text-sm md:text-base"
       >
         Return to Homepage.
       </button>
+      </Link>
     </div>
   )
 }
